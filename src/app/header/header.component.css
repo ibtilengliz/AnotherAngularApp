@@ -1,0 +1,15 @@
+.navbar {
+  line-height: 250% ! important;
+}
+.hover {
+    background-color: cadetblue;
+}
+.title{
+ 
+  color:grey;
+}
+.navbar-title{
+  margin-top: 3%;
+  
+ font-size: 24px;
+}

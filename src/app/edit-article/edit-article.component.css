@@ -1,0 +1,7 @@
+.activePost{
+color:#5bc0de;
+
+}
+.activePost:hover {
+    color:#428bca;
+}

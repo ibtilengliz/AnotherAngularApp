@@ -1,0 +1,45 @@
+<div class="container">
+  <h4 class="center">{{titre}}</h4>
+  <p>{{contenu}}</p>
+  <form (ngSubmit)="onComment(f1)" #f1="ngForm">
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" rows="3" id="comment" name="contenuComm" ngModel required></textarea>
+    </div>
+    <div class="container-fluid">
+      <div class="row ">
+        <div class="col-9">
+          <a routerLink="/articles">
+            <button type="button" class="btn btn-info "> See all
+              <i class="material-icons align-middle">
+                reply
+              </i>
+            </button>
+          </a>
+        </div>
+        <div class="col-3 text-right">
+          <button type="button" class="btn btn-info " (click)="onComment(f1)" [disabled]="f1.invalid"> Reply <i class="material-icons align-middle">
+              send
+            </i> </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+
+  <!--All Comments-->
+
+  <div class="container">
+    <!---les commentaires doivent etre gérés de la meme manière  que les articles-->
+    <ul class="list-group list-group-flush" id="comments">
+      <li class="list-group-item" *ngFor='let commentaire of commentaires'>
+        {{commentaire}}
+       <button type="submit" (click)="onDeleteComment(commentaire)" class="btn float-right"> <i class="material-icons float-right" style="color:red;size:10">
+        delete
+        </i></button>
+      </li>
+
+
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div *ngIf="!remove" class="table-info container">
+  <h4>titre: {{articleTitre}}</h4>
+  <p> contenu: {{articleContenu}}</p>
+  
+  <small>Last Update: {{lastUpdate|date :'short'}}</small>
+  <br><br>
+  <div class="btn-group btn-group-toggle  float-right" style="margin-top:-50px;" data-toggle="buttons">
+    <label class="btn btn-secondary active" *ngIf="isAdmin" >
+      <a (click)="onRedirectToEdit(id)">
+        <input type="radio" name="options" id="option1"  autocomplete="off" checked [disabled]="!isAuth"> Edit
+      </a>
+    </label>
+    <label class="btn btn-secondary" *ngIf="isAdmin">
+        <a data-toggle="modal" [attr.data-target]="'#delete' + index" >
+      <input type="radio" name="options" id="option2" autocomplete="off"  [disabled]="!isAuth"> delete
+      </a>
+    </label>
+    <label class="btn btn-secondary">
+      <a [routerLink]="[id]">
+        <input type="radio" name="options" id="option3" (click)="redirectToSingleA()" autocomplete="off" [disabled]="!isAuth"> Details
+      </a>
+    </label>
+  </div>
+</div>
+<!--Modal HTML template---->
+<!-- Modal -->
+<div  class="modal fade" [id]="'delete' + index" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         <strong>Are you sure you want to delete  <i class="toBlue">"{{ articleTitre }}" </i> post ?</strong> 
+   <p>All information associated to this post will be permanently deleted. This operation can not be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="delete-btn" class="btn btn-danger" data-dismiss="modal" (click)="onDelete()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---End-->
+
+<br><br>

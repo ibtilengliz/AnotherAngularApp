@@ -1,0 +1,78 @@
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" aria-selected="true" href="#home" role="tab"
+        aria-controls="home" aria-selected="true">Posts</a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+        aria-selected="false">Add Post</a>
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+        aria-selected="false">Users List</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <br>
+      <app-article *ngFor="let article of articleService.getArticles(); let i = index" [articleTitre]="article.titre"
+        [articleContenu]="article.contenu" [index]="i" [id]="article.id"></app-article>
+    </div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <app-add-article></app-add-article>
+
+    </div>
+    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+      <br>
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor ="let user of usersService.getUsers(); let i = index">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>{{user.firstname}}</td>
+              <td>{{user.lastname}}</td>
+              <td>{{user.email}}</td>
+              <td><button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#deleteUser' + i">Delete</button>
+              </td>
+              <div  class="modal fade" [id]="'deleteUser' + i" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                       <strong>Are you sure you want to delete  <i class="toBlue">"{{ user.firstname}}" </i>  ?</strong> 
+                 <p>All information associated to this user will be permanently deleted. This operation can not be undone.</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="delete-btn" class="btn btn-danger" data-dismiss="modal"  (click)="onDeleteUser(user)">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+            </tr>
+        
+</tbody>
+</table>
+<!---Modal-->
+
+      </div>
+
+
+    </div>
