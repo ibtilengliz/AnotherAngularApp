@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { UsersService } from './users.service';
+import { User } from '../user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  
-  isAdmin=true;
+  isAdmin = true;
   isAuth = false;
+
+  public currentUser: User;
 
   constructor(private userService: UsersService) {}
 
@@ -16,9 +17,11 @@ export class AuthService {
     return new Promise(
       (resolve, reject) => {
         if (this.userService.checkUser(email, password)) {
+          this.currentUser = this.userService.getUserByEmail(email);
           this.isAuth = true;
           resolve(true);
         } else {
+          this.currentUser = undefined;
           reject(new Error('erreur'));
         }
       }
@@ -28,8 +31,7 @@ export class AuthService {
   signOut() {
     this.isAuth = false;
   }
-  getIsAdmin()
-  {
+  getIsAdmin() {
     return this.isAdmin;
   }
 }

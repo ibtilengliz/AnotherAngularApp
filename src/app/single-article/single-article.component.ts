@@ -1,3 +1,5 @@
+import { AuthService } from './../services/auth.service';
+import { Commentaires } from './../commentaires';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../services/article.service';
@@ -11,14 +13,17 @@ import { NgForm } from '@angular/forms';
 export class SingleArticleComponent implements OnInit {
   titre: string;
   contenu: string;
-  commentaires: any[];
-   url = 'http://localhost:4200/assets/articles.json';
+  commentaires: Commentaires[];
+  editCommentaires: Array<boolean>;
+    toEdit = false;
+  url = 'http://localhost:4200/assets/articles.json';
 
   constructor(
     public articleService: ArticleService,
     public route: ActivatedRoute,
     public router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -27,12 +32,19 @@ export class SingleArticleComponent implements OnInit {
     this.titre = article.titre;
     this.contenu = article.contenu;
     this.commentaires = article.commentaires;
+    this.editCommentaires = new Array<boolean>(this.commentaires.length);
   }
   onComment(form: NgForm) {
     const articlePresent = this.articleService.getArticleById(
       +this.route.snapshot.params['id']
     );
-    articlePresent.commentaires.push(form.value['contenuComm']);
+    // il faut recuperer le user
+   const thisComment = {
+      author: this.authService.currentUser.firstname,
+      contenu: form.value['contenuComm']
+    };
+    articlePresent.commentaires.push(thisComment);
+
     this.http.put(this.url, articlePresent);
 
   }
@@ -43,5 +55,9 @@ export class SingleArticleComponent implements OnInit {
     const index = articlePresent.commentaires.indexOf(commentaire);
     articlePresent.commentaires.splice(index, 1);
     this.http.put(this.url, articlePresent);
+  }
+  onEditComment(commentaire, i) {
+    this.editCommentaires[i] = !this.editCommentaires[i];
+    this.http.put(this.url, commentaire);
   }
 }

@@ -58,4 +58,11 @@ export class UsersService {
     this.users.splice(index, 1);
     this.http.delete<User>('urlPost', user);
   }
+
+  getUserByEmail(email: string) {
+    const found = this.users.find(function(element) {
+      return element.email === email;
+    });
+    return found;
+  }
 }

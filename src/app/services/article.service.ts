@@ -11,7 +11,7 @@ export class ArticleService {
   contenu: string;
   articlesSubject = new Subject<any[]>();
   private url = 'http://localhost:4200/assets/articles.json';
-  commentaires: Array<string>;
+  commentaires: Array <any>;
   articles: Array<Article>;
   constructor(private http: HttpClient) {
     this.http.get<Article[]>(this.url).subscribe(articles => {
@@ -33,7 +33,7 @@ export class ArticleService {
       id: 0,
       titre,
       contenu,
-      commentaires: ['']
+      commentaires: []
     };
     const ids = this.articles.map(element => element.id);
     const maxValue = Math.max(...ids);
@@ -56,7 +56,7 @@ export class ArticleService {
       id,
       titre,
       contenu,
-      commentaires: ['']
+      commentaires: []
     };
     this.articles[id] = articleService;
     this.emitArticleSubject();

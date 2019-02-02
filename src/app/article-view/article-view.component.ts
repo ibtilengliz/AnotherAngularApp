@@ -9,27 +9,25 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./article-view.component.css']
 })
 export class ArticleViewComponent implements OnInit {
-  articleService:ArticleService;
- // articleSubscription: Subscription;
-  //articles: any[];
-  isAuth=false;
-  isAdmin=false;
-  constructor(articleService: ArticleService,private authService :AuthService,private usersService:UsersService) {
+  articleService: ArticleService;
+
+  isAuth = false;
+  isAdmin = false;
+  constructor(articleService: ArticleService, private authService: AuthService, public usersService: UsersService) {
     setTimeout(
       () => {
         this.isAuth = true;
       }, 4000
     );
     this.articleService = articleService;
-    this.usersService=usersService;
+    this.usersService = usersService;
   }
 
 ngOnInit() {
-this.isAdmin=this.authService.getIsAdmin();
+this.isAdmin = this.authService.getIsAdmin();
 
 }
-onDeleteUser(user){
+onDeleteUser(user) {
   this.usersService.deleteUser(user);
 }
-
 }

@@ -4,7 +4,7 @@
   <form (ngSubmit)="onComment(f1)" #f1="ngForm">
     <div class="form-group">
       <label for="comment">Comment:</label>
-      <textarea class="form-control" rows="3" id="comment" name="contenuComm" ngModel required></textarea>
+      <textarea class="form-control" rows="3" id="comment"  value=" {{toEdit}}" name="contenuComm" ngModel required></textarea>
     </div>
     <div class="container-fluid">
       <div class="row ">
@@ -32,11 +32,19 @@
   <div class="container">
     <!---les commentaires doivent etre gérés de la meme manière  que les articles-->
     <ul class="list-group list-group-flush" id="comments">
-      <li class="list-group-item" *ngFor='let commentaire of commentaires'>
-        {{commentaire}}
+      <li class="list-group-item" *ngFor='let commentaire of commentaires; let i = index;'>
+        <input *ngIf="editCommentaires[i]" type="text" class="form-control" [(ngModel)]="commentaire.contenu">
+        <span *ngIf="!editCommentaires[i]">
+        {{commentaire.contenu}}
+      </span>
+        <i><div class="float-right" style="color:grey">{{commentaire.author}}</div></i>
        <button type="submit" (click)="onDeleteComment(commentaire)" class="btn float-right"> <i class="material-icons float-right" style="color:red;size:10">
         delete
         </i></button>
+        <button type="submit" (click)="onEditComment(commentaire, i)" class="btn float-right">  <i class="material-icons" style="color:grey">
+            <span *ngIf="!editCommentaires[i]">edit</span><span *ngIf="editCommentaires[i]">save</span>
+          </i>
+          </button>
       </li>
 
 

@@ -3,7 +3,6 @@ import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../services/article.service';
 import { DeleteArticleComponent } from '../delete-article/delete-article.component';
-//import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Component({
   selector: 'app-article',
@@ -31,7 +30,10 @@ export class ArticleComponent implements OnInit {
   }
 
   onDelete() {
-    this.articleService.deleteArticle(this.id); 
+    this.articleService.deleteArticle(this.id);
   }
 
+  setLastUpdate() {
+    this.lastUpdate = new Date();
+  }
 }
