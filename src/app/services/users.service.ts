@@ -91,4 +91,9 @@ export class UsersService {
     });
     return found;
   }
+getRole(email) {
+  const user = this.getUserByEmail(email);
+  console.log(this.users);
+  return user.roles;
+}
 }
