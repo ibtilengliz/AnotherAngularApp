@@ -1,5 +1,5 @@
 <div *ngIf="!remove" class="table-info container">
-  <h4>{{articleTitre}}</h4>
+  <h4>{{ articleTitre }}</h4>
   <p> {{articleContenu.split('.')[0] + '...'}}</p>
 
   <small>Last Update: {{lastUpdate|date :'short'}}</small>
@@ -22,7 +22,7 @@
     </label>
   </div>
 </div>
-<!--Modal HTML template---->
+<!--Modal HTML template-->
 <!-- Modal -->
 <div  class="modal fade" [id]="'delete' + index" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

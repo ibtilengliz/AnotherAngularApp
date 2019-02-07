@@ -24,13 +24,12 @@ export class AddArticleComponent implements OnInit, OnDestroy {
         this.articles = articles;
       }
     );
-    this.articleService.emitArticleSubject();
   }
 
   onPost(form: NgForm) {
     this.titre = form.value['titre'];
     this.contenu = form.value['contenu'];
-    let id = this.articleService.addArticle(this.titre, this.contenu);
+    const id = this.articleService.addArticle(this.titre, this.contenu);
     this.router.navigate(['articles', id]);
   }
   ngOnDestroy() {

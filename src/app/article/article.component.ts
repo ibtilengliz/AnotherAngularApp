@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../services/article.service';
-import { DeleteArticleComponent } from '../delete-article/delete-article.component';
 
 @Component({
   selector: 'app-article',

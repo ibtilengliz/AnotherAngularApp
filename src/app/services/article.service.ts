@@ -1,3 +1,4 @@
+import { Commentaires } from './../commentaires';
 import { Article } from './../article';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -7,14 +8,15 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ArticleService {
-  titre: string;
-  contenu: string;
   articlesSubject = new Subject<any[]>();
-  private url = 'http://localhost:4200/assets/articles.json';
-  commentaires: Array <any>;
+  private getUrl = 'http://localhost:8000/';
+   editUrl = 'http://localhost:8000/edit';
+
+  comments: Array<Commentaires>;
   articles: Array<Article>;
-  constructor(private http: HttpClient) {
-    this.http.get<Article[]>(this.url).subscribe(articles => {
+
+   constructor(private http: HttpClient) {
+    this.http.get<Article[]>('http://localhost:8000/').subscribe(articles => {
       this.articles = articles;
     });
   }
@@ -25,50 +27,61 @@ export class ArticleService {
     });
     return found;
   }
-  emitArticleSubject() {
-    this.articlesSubject.next(this.articles.slice());
-  }
-  addArticle(titre: string, contenu: string) {
+
+  addArticle(title: string, body: string) {
     const articleService = {
       id: 0,
-      titre,
-      contenu,
-      commentaires: []
+      title,
+      body,
+      comments: []
     };
+    const  url = 'http://localhost:8000/new';
     const ids = this.articles.map(element => element.id);
     const maxValue = Math.max(...ids);
     articleService.id = maxValue < 0 ? 0 : maxValue + 1;
     this.articles.push(articleService);
-    this.emitArticleSubject();
-    this.http.post(this.url, articleService);
+    this.http.post<Article>(url,  articleService).subscribe();
     return articleService.id;
   }
-  getTitle() {
-    return this.titre;
-    this.emitArticleSubject();
-  }
-  getContenu() {
-    return this.contenu;
-    this.emitArticleSubject();
-  }
-  updateArticle(titre: string, contenu: string, id: number) {
-    const articleService = {
-      id,
-      titre,
-      contenu,
-      commentaires: []
-    };
-    this.articles[id] = articleService;
-    this.emitArticleSubject();
-    this.http.put(this.url, articleService);
-    // ajouter dans toutes les methodes du service un appel a la methode d'emission des donnes
+  updateArticle( id: number, title: string, body: string) {
+    const url = `${this.editUrl}/${id}`;
+    const element = this.articles.find(x => x.id === id);
+    const index = this.articles.indexOf(element);
+    alert(index);
+    this.http.put<Article>( `${'http://localhost:8000/edit'}/${id}`,
+    {
+      'id': id,
+      'title': title,
+      'body': body,
+      'comments': this.articles[index].comments
+    } ).subscribe(
+
+      data  => {
+
+      console.log('PUT Request is successful ', data);
+      this.articles[index] = {
+        'id': id,
+        'title': title,
+        'body': body,
+        'comments': this.articles[index].comments
+
+      };
+      },
+
+      error  => {
+
+      console.log('Rrror', error);
+
+      }
+
+      );
   }
   deleteArticle(id: number) {
-    const url = `${this.url}/${id}`;
+   const deleteUrl = 'http://localhost:8000/delete';
+    const url = `${deleteUrl}/${id}`;
+    this.http.delete(url).subscribe();
     const test = this.articles.indexOf(this.getArticleById(id));
     this.articles.splice(test, 1);
-    this.emitArticleSubject();
-    this.http.delete(url);
   }
 
   getArticles() {

@@ -9,37 +9,39 @@ import { UsersService } from '../services/users.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-// il ya  pas 
-  erreur : string;
+  erreur: string;
   authStatus: boolean;
 
   constructor(private authService: AuthService, private router: Router) { }
   ngOnInit() {
     this.authStatus = this.authService.isAuth;
   }
-estAuthentifie(){
-  if (  this.authService.isAuth)
+estAuthentifie() {
+  if (this.authService.isAuth) {
   return true;
-    else return false; 
+  } else { return false; }
 }
   onSignIn(email, password) {
-
-    this.authService.signIn(email, password).then(
-      () => {
-        console.log('Sign in successful!');
-        this.authStatus = this.authService.isAuth;
+    this.authService.signIn(email, password).subscribe((data) => {
+      if (data) {
+        this.authService.isAuth = true;
+        this.authStatus = true;
         this.erreur = undefined;
-        this.router.navigate(['articles']);
-
-      }, () => {
-        console.log('erreur!');
-        this.erreur = "Erreur!";
+        this.router.navigate(['/articles']);
+      } else {
+        this.authService.isAuth = false;
+        this.authStatus = false;
+        this.erreur = 'Erreur';
       }
-    );
+    });
+    console.log(this.authStatus);
   }
 
   onSignOut() {
     this.authService.signOut();
-    this.authStatus = this.authService.isAuth;
+    this.router.navigate(['/auth']);
+    this.authStatus =  this.authService.isAuth;
+    this.erreur = undefined;
+    alert(this.authStatus);
   }
 }

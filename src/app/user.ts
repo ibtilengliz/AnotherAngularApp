@@ -1,8 +1,12 @@
 export interface User {
-    firstname: string;
-    lastname: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    sexe: string;
+  id: number;
+  username: string;
+  roles: any[];
+  password: string;
+  salt: any;
+  firstname: string;
+  lastname: string;
+  sexe: string;
+  email: string;
+
 }

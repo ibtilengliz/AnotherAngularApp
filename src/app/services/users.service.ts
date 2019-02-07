@@ -9,7 +9,8 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class UsersService {
-  private _url = 'http://localhost:4200/assets/users.json';
+  isAdmin: boolean;
+  private _url = 'http://localhost:8000/users';
   users: Array<User> = [];
   constructor(private router: Router, private http: HttpClient) {
     this.http.get<User[]>(this._url).subscribe(users => {
@@ -26,27 +27,49 @@ export class UsersService {
   }
 
   checkUser(email: String, pass: string) {
+    const dataUser: any = {
+      email,
+      pass
+    };
+
+    this.http.post(this._url, dataUser);
     const found = this.users.find(function(element) {
       return element.email === email && element.password === pass;
     });
     return found === undefined ? false : true;
   }
 
-  addUser(firstname, lastname, email, password, confirmPassword, sexe) {
+  addUser(password, firstname, lastname, sexe, email) {
+    const urlAddUser = 'http://localhost:8000/register';
     const userService: User = {
-      firstname,
-      lastname,
-      email,
-      password,
-      confirmPassword,
-      sexe
+      id : 0,
+      username : email,
+  roles: ['ROLE_USER'],
+  password,
+  salt: null,
+  firstname,
+  lastname,
+  sexe,
+  email,
     };
+    console.log(userService);
+    this.http.post<User>(urlAddUser, {
+      'id' : 0,
+        'username' : email,
+        'roles': ['ROLE_USER'],
+        'password': password,
+        'salt': 'null',
+        'firstname': firstname,
+        'lastname': lastname,
+        'sexe': sexe,
+        'email': email
+      }).subscribe();
+
     const found = this.users.find(function(element) {
       return element.email === userService.email;
     });
     if (found === undefined) {
       this.users.push(userService);
-      this.http.post<User>('urlPost', userService);
       return 1;
     } else {
       return 0;
@@ -54,9 +77,12 @@ export class UsersService {
   }
 
   deleteUser(user) {
+    const id = user.id;
+    alert(id);
+    const url = `${'http://localhost:8000/deleteuser'}/${id}`;
     const index = this.users.indexOf(user);
     this.users.splice(index, 1);
-    this.http.delete<User>('urlPost', user);
+    this.http.delete<User>(url).subscribe();
   }
 
   getUserByEmail(email: string) {

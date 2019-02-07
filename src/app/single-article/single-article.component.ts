@@ -29,31 +29,45 @@ export class SingleArticleComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
     const article = this.articleService.getArticleById(+id);
-    this.titre = article.titre;
-    this.contenu = article.contenu;
-    this.commentaires = article.commentaires;
+    this.titre = article.title;
+    this.contenu = article.body;
+    this.commentaires = article.comments;
     this.editCommentaires = new Array<boolean>(this.commentaires.length);
   }
   onComment(form: NgForm) {
     const articlePresent = this.articleService.getArticleById(
       +this.route.snapshot.params['id']
     );
-    // il faut recuperer le user
-   const thisComment = {
-      author: this.authService.currentUser.firstname,
-      contenu: form.value['contenuComm']
-    };
-    articlePresent.commentaires.push(thisComment);
+    alert(+this.route.snapshot.params['id']);
+   /* const url = `${'http://localhost:8000/commenter'}/${+this.route.snapshot.params['id']}`;
+     const thisComment = {
+      author: this.authService.currentUser.username,
+      content: form.value['contenuComm']
+    };*/
+    this.http.post<Commentaires>(`${'http://localhost:8000/commenter'}/${+this.route.snapshot.params['id']}`, {
+      'author': 'user',
+      'content': form.value['contenuComm']
+    }).subscribe( data  => {
+      console.log('POST Request is successful ', data);
+      },
+      error  => {
+      console.log('Rrror', error);
+      }
+);
 
-    this.http.put(this.url, articlePresent);
-
+this.articleService.updateArticle(articlePresent.id, articlePresent.title, articlePresent.body);
+   /* articlePresent.comments.push(thisComment);
+    this.articleService.updateArticle(articlePresent.id, articlePresent.title, articlePresent.body);
+    this.commentaires.push(thisComment);
+alert(thisComment);
+*/
   }
   onDeleteComment(commentaire) {
     const articlePresent = this.articleService.getArticleById(
       +this.route.snapshot.params['id']
     );
-    const index = articlePresent.commentaires.indexOf(commentaire);
-    articlePresent.commentaires.splice(index, 1);
+    const index = articlePresent.comments.indexOf(commentaire);
+    articlePresent.comments.splice(index, 1);
     this.http.put(this.url, articlePresent);
   }
   onEditComment(commentaire, i) {

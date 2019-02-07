@@ -33,9 +33,9 @@
     <!---les commentaires doivent etre gérés de la meme manière  que les articles-->
     <ul class="list-group list-group-flush" id="comments">
       <li class="list-group-item" *ngFor='let commentaire of commentaires; let i = index;'>
-        <input *ngIf="editCommentaires[i]" type="text" class="form-control" [(ngModel)]="commentaire.contenu">
+        <input *ngIf="editCommentaires[i]" type="text" class="form-control" [(ngModel)]="commentaire.content">
         <span *ngIf="!editCommentaires[i]">
-        {{commentaire.contenu}}
+        {{commentaire.content}}
       </span>
         <i><div class="float-right" style="color:grey">{{commentaire.author}}</div></i>
        <button type="submit" (click)="onDeleteComment(commentaire)" class="btn float-right"> <i class="material-icons float-right" style="color:red;size:10">

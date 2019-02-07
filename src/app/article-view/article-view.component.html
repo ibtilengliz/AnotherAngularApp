@@ -16,8 +16,8 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       <br>
-      <app-article *ngFor="let article of articleService.getArticles(); let i = index" [articleTitre]="article.titre"
-        [articleContenu]="article.contenu" [index]="i" [id]="article.id"></app-article>
+      <app-article *ngFor="let article of articleService.getArticles(); let i = index" [articleTitre]="article.title"
+        [articleContenu]="article.body" [index]="i" [id]="article.id"></app-article>
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <app-add-article></app-add-article>

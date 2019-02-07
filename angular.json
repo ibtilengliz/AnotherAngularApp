@@ -91,7 +91,9 @@
               "src/favicon.ico",
               "src/assets",
               {"glob" : "users.json", "input" : "./", "output" : "./assets"},
-              {"glob" : "articles.json", "input" : "./", "output" : "./assets"}
+              {"glob" : "articles.json", "input" : "./", "output" : "./assets"},
+              {"glob" : "auth.json", "input" : "./", "output" : "./assets"}
+
 
             ]
           }

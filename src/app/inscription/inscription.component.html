@@ -4,15 +4,16 @@
       <div class="form-group row">
           <label for="inputPassword3" class="col-sm-2 col-form-label">FirstName</label>
           <div class="col-sm-10">
-             <input type="text" class="form-control" placeholder="FirstName" ngModel name="firstname"required>  
+             <input type="text" class="form-control" placeholder="FirstName" ngModel name="firstname"required>
               </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-2 col-form-label">LastName</label>
             <div class="col-sm-10">
-               <input type="text" class="form-control" placeholder="LastName"  ngModel name="lastname" required>  
+               <input type="text" class="form-control" placeholder="LastName"  ngModel name="lastname" required>
                 </div>
           </div>
+
    <div class="form-group row">
      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
      <div class="col-sm-10">
@@ -25,14 +26,14 @@
        <input type="password" class="form-control" id="inputPassword1" ngModel name="password" placeholder="Password" required>
      </div>
    </div>
- 
+
   <div class="form-group row">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
       <div class="col-sm-10">
         <input type="password" class="form-control" id="inputPassword2" ngModel name="confirmPassword" placeholder="Confirm Password" required>
       </div>
     </div>
-    
+
   <p style="color:red" *ngIf="showMessage">Passwords do not Match ! </p>
   <div class="form-group row">
       <label for="inputPassword3" class="col-sm-2 col-form-label">Sexe</label>
@@ -49,11 +50,10 @@
 Female
 
 </label>
-    </div> 
+    </div>
 </div>
 </div>
 <button type="button"class="btn btn-outline-info btn-lg"   type="submit" [disabled]="ff.invalid">Inscription</button>
 
  </form>
  </div>
- 

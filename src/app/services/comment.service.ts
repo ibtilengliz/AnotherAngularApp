@@ -5,9 +5,9 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CommentService {
-  
+  /*
   contenuComm:string;
- 
+
   commentaires = [
     {
      id:1,
@@ -23,7 +23,7 @@ export class CommentService {
      }
   ];
   constructor() { }
-    //les methodes qui concernent un article sont ici 
+    //les methodes qui concernent un article sont ici
     getCommentById(id: number) {
       const commentaire = this.commentaires.find(
         (s) => {
@@ -32,7 +32,7 @@ export class CommentService {
       );
       return commentaire;
   }
- 
+
   addComment(contenuComm:string){
     const commentService = {
      id: 0,
@@ -41,9 +41,10 @@ export class CommentService {
    commentService.contenuComm = contenuComm;
    commentService.id = this.commentaires[(this.commentaires.length - 1)].id + 1;
    this.commentaires.push(commentService);
-   
+
   }
   getCommentaires() {
     return this.commentaires;
   }
+  */
 }

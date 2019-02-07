@@ -8,19 +8,20 @@ import {AuthService} from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   authStatus: boolean;
-  constructor(private authService : AuthService) { 
+  constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    
+
 
   }
-  estAuthentifie(){
-    if(this.authService.isAuth)
+  estAuthentifie() {
+    if (this.authService.isAuth) {
     return true;
-    else 
+    } else {
     return false;
+    }
   }
 
   onSignOut() {

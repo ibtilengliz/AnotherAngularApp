@@ -1,9 +1,9 @@
 [
   {
       "id": 0,
-      "titre": "La fuite des cerveaux en Tunisie",
-      "contenu": "Le phénomène de la fuite des cerveaux en Tunisie est marqué par le nombre croissant de cadres tunisiens partis à l’étranger et leur féminisation de plus en plus importante. Le départ de ces hauts potentiels est moins à considérer comme une perte que comme un gain pour la Tunisie. Ces cadres constituent un gisement de compétences, comme le montre une étude effectuée avant la révolution tunisienne de 2011. Dans la période post-révolutionnaire qui s’est ouverte en Tunisie, seul le long terme permettra de confirmer cette dynamique au service du développement de leur pays d’origine.",
-      "commentaires":[
+      "title": "La fuite des cerveaux en Tunisie",
+      "body": "Le phénomène de la fuite des cerveaux en Tunisie est marqué par le nombre croissant de cadres tunisiens partis à l’étranger et leur féminisation de plus en plus importante. Le départ de ces hauts potentiels est moins à considérer comme une perte que comme un gain pour la Tunisie. Ces cadres constituent un gisement de compétences, comme le montre une étude effectuée avant la révolution tunisienne de 2011. Dans la période post-révolutionnaire qui s’est ouverte en Tunisie, seul le long terme permettra de confirmer cette dynamique au service du développement de leur pays d’origine.",
+      "comments":[
         {
           "author" :"user0",
           "contenu" :"contenu 0"
@@ -16,9 +16,9 @@
   },
   {
       "id": 1,
-      "titre": "La chronologie de l'exploration spatiale",
-      "contenu": "L’exploration de l’espace, parfois appelée conquête de l’espace consiste en l'exploration physique de l'espace, c'est-à-dire de tous les objets extérieurs à la Terre. L’exploration du système solaire en constitue la première étape, un des événements majeurs de la seconde partie du xxe siècle sur le plan scientifique, mais aussi de façon plus large pour nos sociétés, par l'expansion prodigieuse de cette nouvelle frontière. Une colonisation de l'espace pourrait en effet apparaître comme l'aboutissement à très long terme.",
-      "commentaires":[
+      "title": "La chronologie de l'exploration spatiale",
+      "body": "L’exploration de l’espace, parfois appelée conquête de l’espace consiste en l'exploration physique de l'espace, c'est-à-dire de tous les objets extérieurs à la Terre. L’exploration du système solaire en constitue la première étape, un des événements majeurs de la seconde partie du xxe siècle sur le plan scientifique, mais aussi de façon plus large pour nos sociétés, par l'expansion prodigieuse de cette nouvelle frontière. Une colonisation de l'espace pourrait en effet apparaître comme l'aboutissement à très long terme.",
+      "comments":[
         {
           "author" :"user1",
           "contenu" :"contenu 1"

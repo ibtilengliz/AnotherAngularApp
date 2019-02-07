@@ -17,8 +17,8 @@ export class EditArticleComponent implements OnInit {
   constructor(private route: ActivatedRoute, private articleService: ArticleService, private router: Router) { }
     ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.titre = this.articleService.getArticleById(+this.id).titre;
-    this.contenu = this.articleService.getArticleById(+this.id).contenu;
+    this.titre = this.articleService.getArticleById(+this.id).title;
+    this.contenu = this.articleService.getArticleById(+this.id).body;
   }
   seeAllPosts() {
     this.router.navigate(['articles']);
@@ -26,8 +26,8 @@ export class EditArticleComponent implements OnInit {
   onEdit(form: NgForm) {
     this.titre = form.value['titre'];
     this.contenu = form.value['contenu'];
-    this.articleService.updateArticle(this.titre, this.contenu, +this.id);
     this.router.navigate(['articles']);
+    this.articleService.updateArticle(+this.id, this.titre, this.contenu );
   }
 
 }
