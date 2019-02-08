@@ -31,7 +31,6 @@ const appRoutes: Routes = [
   { path : 'addArticle', canActivate: [AuthGuard], component: AddArticleComponent},
   { path : 'articles/edit/:id', canActivate: [AuthGuard], component:  EditArticleComponent},
   { path: 'inscription' , component: InscriptionComponent},
-
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found' }
 ];

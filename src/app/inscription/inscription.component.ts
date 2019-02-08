@@ -22,7 +22,7 @@ onInscription(form: NgForm) {
 
   const confirmPassword = form.value['confirmPassword'];
   if (form.value['password'] !== form.value['confirmPassword']) {
-this.showMessage = true;  }
+  this.showMessage = true; }
   const sexe = form.value['sexe'];
   const msg: number = this.usersService.addUser(password, firstname, lastname, sexe, email);
   if (msg === 0) {// ken el user mawjoud deja el addUser traja3 0

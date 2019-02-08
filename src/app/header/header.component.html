@@ -6,29 +6,29 @@
 
 
     <li id="tooltip" class="nav-item navbar-title"  placement="bottom" ngbTooltip="Home">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="estAuthentifie() ? 'articles' : ''"><i class="material-icons" >
+      <a class="nav-link" [routerLink]="estAuthentifie() ? 'articles' : ''"><i class="material-icons" >
           home
         </i></a>
     </li>
 
     <li class="nav-item navbar-title " placement="bottom" ngbTooltip="Notifications">
-      <a class="nav-link" href="#"><i class="material-icons">
+      <a class="nav-link"><i class="material-icons">
           notification_important
         </i></a>
     </li>
 
     <li class="nav-item navbar-title" *ngIf='!estAuthentifie()'  placement="bottom" ngbTooltip="Sign in">
-      <a class="nav-link" routerLinkActive="active" routerLink="auth"><i class="material-icons">
+      <a class="nav-link" routerLink="auth"><i class="material-icons">
           account_circle
         </i></a>
     </li>
-    <li class="nav-item navbar-title" *ngIf='!estAuthentifie()' placement="bottom" ngbTooltip="Inscription">
-      <a class="nav-link" routerLinkActive="active"  routerLink="inscription"><i class="material-icons">
+    <li class="nav-item navbar-title" *ngIf='!estAuthentifie()' placement="bottom" ngbTooltip="Sign up">
+      <a class="nav-link"  routerLink="inscription"><i class="material-icons">
           person_add
         </i></a>
     </li>
     <li class="nav-item navbar-title" *ngIf='estAuthentifie()' (click)="onSignOut()" placement="bottom" ngbTooltip="Sign Out">
-      <a class="nav-link" routerLinkActive="active" routerLink="auth"><i class="material-icons">
+      <a class="nav-link"  routerLink="auth"><i class="material-icons">
           directions_walk
         </i></a>
     </li>

@@ -78,7 +78,6 @@ export class UsersService {
 
   deleteUser(user) {
     const id = user.id;
-    alert(id);
     const url = `${'http://localhost:8000/deleteuser'}/${id}`;
     const index = this.users.indexOf(user);
     this.users.splice(index, 1);
@@ -96,4 +95,5 @@ getRole(email) {
   console.log(this.users);
   return user.roles;
 }
+
 }

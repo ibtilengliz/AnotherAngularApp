@@ -34,7 +34,6 @@ estAuthentifie() {
         this.erreur = 'Erreur';
       }
     });
-    console.log(this.authStatus);
   }
 
   onSignOut() {
@@ -42,6 +41,8 @@ estAuthentifie() {
     this.router.navigate(['/auth']);
     this.authStatus =  this.authService.isAuth;
     this.erreur = undefined;
-    alert(this.authStatus);
+  }
+  redirectToInscri() {
+this.router.navigate(['inscription']);
   }
 }

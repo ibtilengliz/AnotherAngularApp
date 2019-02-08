@@ -38,7 +38,7 @@
         {{commentaire.content}}
       </span>
         <i><div class="float-right" style="color:grey">{{commentaire.author}}</div></i>
-       <button type="submit" (click)="onDeleteComment(commentaire)" class="btn float-right"> <i class="material-icons float-right" style="color:red;size:10">
+       <button type="submit"   (click)="onDeleteComment(commentaire, i)" class="btn float-right"> <i class="material-icons float-right" style="color:red;size:10">
         delete
         </i></button>
         <button type="submit" (click)="onEditComment(commentaire, i)" class="btn float-right">  <i class="material-icons" style="color:grey">
